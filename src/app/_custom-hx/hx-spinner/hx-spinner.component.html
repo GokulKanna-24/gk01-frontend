@@ -1,0 +1,13 @@
+<ng-template #hxSpinner>
+  <div class="hx-spinner-overlay">
+    <div class="hx-spinner-content">
+      <ng-lottie
+         width="15rem"
+         height="15rem"
+         containerClass="moving-box another-class"
+        [options]="options" (animationCreated)="animationCreated($event)" /> 
+    </div>
+  </div>
+</ng-template>
+
+<div #parent></div>

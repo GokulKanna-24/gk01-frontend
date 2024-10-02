@@ -1,0 +1,31 @@
+<nz-sider class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://pracle.com/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>{{ title() }}</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="menuCollapse">
+      @for (item of listItems(); track $index) {
+        @if (item.items?.length) {
+          <li nz-submenu nzOpen [nzTitle]="item.name" [nzIcon]="item.icon">
+            @for (sumItem of item.items; track $index) {
+              <li nz-menu-item nzMatchRouter>
+                <a [routerLink]="sumItem.route_name">{{sumItem.name}}</a>
+              </li>
+            }
+          </li>
+        } @else {
+          <li nz-menu-item nzMatchRouter>
+            <i nz-icon [nzType]="item.icon"></i>
+            <span [routerLink]="item.route_name">{{item.display_name}}</span>
+          </li>
+        }
+      }
+    </ul>
+  </nz-sider>

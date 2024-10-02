@@ -1,0 +1,21 @@
+<div class="wrapper">
+    <div class="inner">
+        <img src="image-1.png" alt="" class="image-1">
+        <form [formGroup]="loginForm">
+            <h3>Welcome To HalaX</h3>
+            <div class="form-holder">
+                <span class="cus-left pi pi-envelope" style="color: #0883ff"></span>
+                <input type="email" formControlName="email" class="form-control" placeholder="E-Mail">
+            </div>
+            <div class="form-holder">
+                <span class="cus-left pi pi-key" style="color: #0883ff"></span>
+                <input [type]="passwordShow ? 'text' : 'password'" formControlName="password" class="form-control" placeholder="Password">
+                <span (click)="passwordShow = !passwordShow" class="cus-right pi" [ngClass]="passwordShow ? 'pi-eye-slash' : 'pi-eye'" style="color: #0883ff"></span>
+            </div>
+            <button (click)="onSubmit()">
+                <span>Login</span>
+            </button>
+        </form>
+        <img src="image-2.png" alt="" class="image-2">
+    </div>
+</div>

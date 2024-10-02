@@ -1,0 +1,60 @@
+<nz-header>
+  <div class="app-header">
+    <div nz-row nzJustify="space-between">
+      <div nz-col nzSpan="4">
+          <span class="header-trigger" (click)="onChangeCollapse()">
+              <span class="trigger"
+                nz-icon
+                [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+              ></span>
+          </span>
+      </div>
+      <div nz-col nzSpan="8">
+        <div nz-row nzJustify="end">
+          <div nz-col nzSpan="4">col-4</div>
+          <div nz-col nzSpan="4">
+            <span nz-icon nzType="setting" nzTheme="outline"></span>
+          </div>
+          <div nz-col nzSpan="4">
+            <span [routerLink]="'/main_settings'" class="pi pi-cog hx-large-font hx-curser"></span>
+          </div>
+          <div nz-col nzSpan="4">
+            <p-avatar 
+              *ngIf="!loading; else elseSkeleton"
+              [label]="user().username[0] | uppercase" 
+              size="large"
+              (click)="menu.toggle($event)"
+              styleClass="mr-2 hx-curser" 
+              [style]="{ 'background-color': '#dee9fc', color: '#1a2551' }" 
+              shape="circle" />
+            <ng-template #elseSkeleton>
+              <div class="flex mt-3">
+                <p-skeleton shape="circle" size="3rem" styleClass="mr-2" />
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nz-header>
+
+<p-menu #menu [model]="items" [popup]="true">
+  <ng-template pTemplate="start">
+    <button (click)="clickProfile(menu, $event)" pRipple class="relative overflow-hidden w-full p-link flex align-items-center p-2 pl-3 text-color hover:surface-200 border-noround">
+      <p-avatar image="hacker.png" class="mr-2" shape="circle" />
+      <span class="inline-flex flex-column">
+          <span class="font-bold">{{user().last_name + " " + user().first_name}}</span>
+          <span class="text-sm">{{user().role_display}}</span>
+      </span>
+    </button>
+  </ng-template>
+  <ng-template pTemplate="item" let-item>
+    <a pRipple class="flex align-items-center p-menuitem-link">
+      <span [class]="item.icon"></span>
+      <span class="ml-2">{{ item.label }}</span>
+    </a>
+  </ng-template>
+  <!-- <ng-template pTemplate="end">
+  </ng-template> -->
+</p-menu>

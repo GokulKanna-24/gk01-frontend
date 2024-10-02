@@ -1,0 +1,42 @@
+<div class="card">
+	<p-card>
+		<p-table 
+			[paginator]="true" 
+			[rows]="4" 
+			[rowsPerPageOptions]="[4, 10, 20]" 
+			[value]="data" >
+			<ng-template pTemplate="caption">
+					<div class="flex align-items-center justify-content-between">
+							Modules
+							<!-- <p-button icon="pi pi-refresh" /> -->
+					</div>
+			</ng-template>
+			<ng-template pTemplate="header">
+				<tr>
+					<th>Module Name</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Status</th>
+				</tr>
+			</ng-template>
+			<ng-template pTemplate="body" let-datum>
+				<tr>
+					<td>{{ datum.display_name }}</td>
+					<td>{{ datum.name }}</td>
+					<td>{{ datum.description }}</td>
+					<td>
+						<button 
+							pButton 
+							pRipple 
+							type="button"
+							[ngClass]="datum.is_active ? 'hx-success' : 'hx-danger'"
+							[icon]="datum.is_active ? 'pi pi-check' : 'pi pi-lock'"
+							(click)="datum.is_active = !datum.is_active" 
+							class="p-button-sm p-button-text">
+						</button>
+					</td>
+				</tr>
+			</ng-template>
+		</p-table>
+	</p-card>
+</div>
